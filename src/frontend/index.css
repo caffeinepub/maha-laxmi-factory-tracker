@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Bricolage Grotesque – Display headings ──────────────────── */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── General Sans – Body text ────────────────────────────────── */
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* ── Core palette – Warm Industrial Saffron ───────────────── */
+    /* background: warm off-white parchment */
+    --background: 0.972 0.012 75;
+    /* foreground: deep espresso brown */
+    --foreground: 0.22 0.04 55;
+
+    /* card: creamy white with warm tint */
+    --card: 0.99 0.008 75;
+    --card-foreground: 0.22 0.04 55;
+
+    /* popover */
+    --popover: 0.99 0.008 75;
+    --popover-foreground: 0.22 0.04 55;
+
+    /* primary: rich saffron/amber */
+    --primary: 0.65 0.16 55;
+    --primary-foreground: 0.99 0.005 75;
+
+    /* secondary: warm sand */
+    --secondary: 0.94 0.025 75;
+    --secondary-foreground: 0.35 0.06 50;
+
+    /* muted */
+    --muted: 0.94 0.018 75;
+    --muted-foreground: 0.52 0.04 60;
+
+    /* accent: terracotta */
+    --accent: 0.72 0.13 40;
+    --accent-foreground: 0.99 0.005 75;
+
+    /* destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* border / input */
+    --border: 0.88 0.03 70;
+    --input: 0.88 0.03 70;
+    --ring: 0.65 0.16 55;
+
+    /* chart colors */
+    --chart-1: 0.65 0.16 55;
+    --chart-2: 0.72 0.13 40;
+    --chart-3: 0.58 0.14 60;
+    --chart-4: 0.78 0.12 80;
+    --chart-5: 0.5 0.1 30;
+
+    /* sidebar */
+    --sidebar: 0.24 0.05 55;
+    --sidebar-foreground: 0.95 0.015 75;
+    --sidebar-primary: 0.72 0.17 55;
+    --sidebar-primary-foreground: 0.99 0.005 75;
+    --sidebar-accent: 0.32 0.06 55;
+    --sidebar-accent-foreground: 0.95 0.015 75;
+    --sidebar-border: 0.35 0.05 50;
+    --sidebar-ring: 0.65 0.16 55;
+
+    /* custom factory tokens */
+    --factory-amber: 0.72 0.18 65;
+    --factory-terracotta: 0.62 0.16 38;
+    --factory-sand: 0.92 0.025 72;
+    --factory-espresso: 0.22 0.04 55;
+    --factory-cream: 0.975 0.01 75;
+  }
+
+  .dark {
+    --background: 0.18 0.04 55;
+    --foreground: 0.95 0.015 75;
+    --card: 0.22 0.04 55;
+    --card-foreground: 0.95 0.015 75;
+    --popover: 0.26 0.05 55;
+    --popover-foreground: 0.95 0.015 75;
+    --primary: 0.72 0.17 58;
+    --primary-foreground: 0.18 0.04 55;
+    --secondary: 0.28 0.05 55;
+    --secondary-foreground: 0.92 0.015 75;
+    --muted: 0.26 0.04 55;
+    --muted-foreground: 0.62 0.04 65;
+    --accent: 0.68 0.15 42;
+    --accent-foreground: 0.99 0.005 75;
+    --destructive: 0.704 0.191 22.216;
+    --destructive-foreground: 0.985 0 0;
+    --border: 1 0 0 / 12%;
+    --input: 1 0 0 / 15%;
+    --ring: 0.72 0.17 58;
+    --chart-1: 0.72 0.18 65;
+    --chart-2: 0.68 0.15 42;
+    --chart-3: 0.62 0.14 60;
+    --chart-4: 0.78 0.12 80;
+    --chart-5: 0.55 0.12 35;
+    --sidebar: 0.15 0.04 55;
+    --sidebar-foreground: 0.92 0.015 75;
+    --sidebar-primary: 0.72 0.17 58;
+    --sidebar-primary-foreground: 0.18 0.04 55;
+    --sidebar-accent: 0.24 0.05 55;
+    --sidebar-accent-foreground: 0.92 0.015 75;
+    --sidebar-border: 1 0 0 / 10%;
+    --sidebar-ring: 0.72 0.17 58;
+
+    --factory-amber: 0.78 0.18 68;
+    --factory-terracotta: 0.68 0.16 40;
+    --factory-sand: 0.28 0.04 60;
+    --factory-espresso: 0.92 0.015 75;
+    --factory-cream: 0.22 0.04 55;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* ── Grain texture overlay ─────────────────────────────────── */
+.grain-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px;
+}
+
+/* ── Custom scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(var(--muted));
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--primary) / 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--primary) / 0.7);
+}
+
+/* ── Factory pattern background ───────────────────────────── */
+.factory-bg {
+  background-color: oklch(var(--background));
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      oklch(var(--border) / 0.4) 39px,
+      oklch(var(--border) / 0.4) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      oklch(var(--border) / 0.4) 39px,
+      oklch(var(--border) / 0.4) 40px
+    );
+}
+
+/* ── Sidebar nav link active state ────────────────────────── */
+.nav-link-active {
+  background: oklch(var(--sidebar-accent));
+  color: oklch(var(--sidebar-accent-foreground));
+}
+
+/* ── Stock card gradient ───────────────────────────────────── */
+.stock-bath-gradient {
+  background: linear-gradient(135deg, oklch(0.62 0.13 220 / 0.15), oklch(0.62 0.13 220 / 0.05));
+  border-color: oklch(0.62 0.13 220 / 0.3);
+}
+.stock-hand-gradient {
+  background: linear-gradient(135deg, oklch(0.68 0.15 140 / 0.15), oklch(0.68 0.15 140 / 0.05));
+  border-color: oklch(0.68 0.15 140 / 0.3);
+}
+.stock-face-gradient {
+  background: linear-gradient(135deg, oklch(0.72 0.17 55 / 0.18), oklch(0.72 0.17 55 / 0.06));
+  border-color: oklch(0.72 0.17 55 / 0.35);
+}
+
+/* ── Animate pulse for loading ─────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(var(--muted)) 25%,
+    oklch(var(--secondary)) 50%,
+    oklch(var(--muted)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
